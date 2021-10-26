@@ -1,6 +1,6 @@
-FROM python:3.9
+FROM python:3.9.7-slim-buster
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 RUN apt-get -y update  && apt-get install -y \
   python3-dev \
@@ -20,4 +20,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD gunicorn -w 3 -k uvicorn.workers.UvicornWorker main:app --bind 0.0.0.0:$PORT
+CMD gunicorn -w 3 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:$PORT

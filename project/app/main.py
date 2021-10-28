@@ -35,7 +35,7 @@ async def pong(settings: Settings = Depends(get_settings)):
 
 
 @app.post("/predict", response_model=HeartPredict, status_code=200)
-def get_prediction(payload: HeartInfo):
+async def get_prediction(payload: HeartInfo):
     """
     Make predicition using input params.
 

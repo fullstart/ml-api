@@ -22,8 +22,20 @@ class HeartInfo(BaseModel):
         JSON structure of parameters to make 
 
     """
-    
-    val1: str
+
+    age:      int
+    sex:      int
+    cp:       int
+    trestbps: int
+    chol:     int
+    fbs:      int
+    restecg:  int
+    thalach:  int
+    exang:    int
+    oldpeak:  float
+    slope:    int
+    ca:       int
+    thal:     int
 
 
 class HeartPredict(BaseModel):

@@ -9,6 +9,7 @@ import joblib
 import pandas as pd
 from sklearn.svm import SVC
 from pydantic import BaseModel
+import dill
 
 # define data structures
 
@@ -62,4 +63,9 @@ def predict(heart_data: HeartInfo):
         Prediction value (0 or 1)
 
     """
-    return 0.75
+
+    model = dill.load(open("../../data/heart_model.pkl", "b"))
+    data = pd.DataFrame(heart_data.dict()).drop(["fbs"], axis=1)
+    prediction = model.predict(data)
+
+    return prediction

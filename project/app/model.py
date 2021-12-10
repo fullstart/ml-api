@@ -63,9 +63,11 @@ def predict(heart_data: HeartInfo):
         Prediction value (0 or 1)
 
     """
-
-    model = dill.load(open("../../data/heart_model.pkl", "b"))
-    data = pd.DataFrame(heart_data.dict()).drop(["fbs"], axis=1)
+    with open("app/heart_model.pkl", "rb") as model_file:
+        model = dill.load(model_file)
+    
+    data = pd.DataFrame(heart_data.dict(), index=[0]).drop(["fbs"], axis=1)
     prediction = model.predict(data)
+    ret_val = {"prediction": prediction}
 
-    return prediction
+    return HeartPredict(**ret_val)

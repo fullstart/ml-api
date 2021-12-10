@@ -52,4 +52,4 @@ async def get_prediction(payload: HeartInfo):
     """
     prediction_val = predict(payload)
     
-    return {"prediction": prediction_val}
+    return prediction_val
